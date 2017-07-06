@@ -1,12 +1,13 @@
 Package.describe({
-  name: 'aramk:file-upload',
+  name: 'crc4si:file-upload',
   summary: 'Simple file uploads.',
+  git: 'https://github.com/crc-si/meteor-file-upload.git',
   version: '0.4.2'
 });
 
 Npm.depends({
   'mime': '1.3.4'
-})
+});
 
 Package.onUse(function(api) {
   api.versionsFrom('METEOR@1.2.0.1');
@@ -20,7 +21,7 @@ Package.onUse(function(api) {
     'cfs:filesystem@0.1.2',
     'cfs:tempstore@0.1.5',
     'cfs:s3@0.1.3',
-    'urbanetic:bismuth-utility@0.3.0',
+    'crc4si:bismuth-utility@0.3.0',
     'urbanetic:utility@1.2.0'
   ], ['client', 'server']);
   api.addFiles([
