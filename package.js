@@ -2,7 +2,7 @@ Package.describe({
   name: 'crc4si:file-upload',
   summary: 'Simple file uploads.',
   git: 'https://github.com/crc-si/meteor-file-upload.git',
-  version: '0.4.2'
+  version: '0.4.2_1'
 });
 
 Npm.depends({
