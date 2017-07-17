@@ -94,15 +94,22 @@ Meteor.methods
     data
 
   'files/download/json': (fileId, collectionName, options) ->
-    Logger.debug('Downloading file:', collectionName, fileId, options)
+    Logger.info('Downloading file:', collectionName, fileId, options)
     return unless @userId
     @unblock()
     data = FileUtils.getBuffer(fileId, collectionName, options).toString()
     Logger.debug('Returning file JSON:', collectionName, fileId, data.length)
     if data == ''
-      throw new Meteor.Error(400, 'Attempted to download empty JSON')
+      throw new Meteor.Error(400, 'Attempted to download empty JSON for ' + fileId)
     else
-      JSON.parse(data)
+      result = null
+      try
+        result = JSON.parse(data)
+      catch error
+        logger.error("Failed to download file " + fileId + " because it was not JSON.")
+        throw new Meteor.Error(400, "Attempted to download file and found one that was not JSON")
+      unless error?
+        result
 
   'files/adapters': ->
     # Only return the name of the adapters to prevent access to confidential settings on the client.
